@@ -1,3 +1,4 @@
+from operator import index
 import turtle
 import time
 import random
@@ -5,7 +6,7 @@ import random
 s = turtle.Screen()
 s.setup(650,650)
 s.bgcolor("cadetblue")
-s.title("Snake by Walter")
+s.title("Snake by Walter Milcoff")
 
 
 comida = turtle.Turtle()
@@ -27,6 +28,9 @@ snake.penup()
 snake.goto(0,0)
 snake.direction = "stop"
 snake.color("red")
+
+
+cuerposnake = []
 
 
 retraso = 0.1
@@ -76,9 +80,28 @@ while True:
         y = random.randint(-250, 250)
         comida.goto(x,y)
         
+        nuevo_cuerpo = turtle.Turtle()
+        nuevo_cuerpo.shape("arrow")
+        nuevo_cuerpo.color("red")
+        nuevo_cuerpo.penup()
+        nuevo_cuerpo.goto(0,0)
+        nuevo_cuerpo.speed(0)
+        cuerposnake.append(nuevo_cuerpo)
+        
+    total = len(cuerposnake)
+        
+    for index in range(total -1, 0, -1):
+        x = cuerposnake[index-1].xcor()
+        y = cuerposnake[index-1].ycor()
+        cuerposnake[index].goto(x,y)
+            
+    if total > 0:
+        x = snake.xcor()
+        y = snake.ycor()
+        cuerposnake[0].goto(x,y)
+        
     movimiento()
     time.sleep(retraso)
-
 
 turtle.done()
 
