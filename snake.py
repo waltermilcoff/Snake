@@ -1,12 +1,25 @@
 import turtle
 import time
+import random
 
 s = turtle.Screen()
 s.setup(650,650)
 s.bgcolor("cadetblue")
 s.title("Snake by Walter")
 
+
+comida = turtle.Turtle()
+
+
+comida.shape("circle")
+comida.color("orange")
+comida.penup()
+comida.goto(0, 100)
+comida.speed(0)
+
+
 snake = turtle.Turtle()
+
 
 snake.speed(1)
 snake.shape("arrow")
@@ -14,6 +27,7 @@ snake.penup()
 snake.goto(0,0)
 snake.direction = "stop"
 snake.color("red")
+
 
 retraso = 0.1
 
@@ -56,6 +70,12 @@ s.onkeypress(izquierda, "Left")
 
 while True:
     s.update()
+    
+    if snake.distance(comida) < 20:
+        x = random.randint(-250, 250)
+        y = random.randint(-250, 250)
+        comida.goto(x,y)
+        
     movimiento()
     time.sleep(retraso)
 
