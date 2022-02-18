@@ -75,6 +75,16 @@ s.onkeypress(izquierda, "Left")
 while True:
     s.update()
     
+    if snake.xcor() > 300 or snake.xcor() < -300 or snake.ycor() > 300 or snake.ycor() < -300:
+        time.sleep(3)
+        for i in cuerposnake:
+            i.clear()
+            i.hideturtle()
+        snake.home()
+        snake.direction = "stop"
+        cuerposnake.clear()    
+        
+
     if snake.distance(comida) < 20:
         x = random.randint(-250, 250)
         y = random.randint(-250, 250)
@@ -101,6 +111,17 @@ while True:
         cuerposnake[0].goto(x,y)
         
     movimiento()
+    
+    for i in cuerposnake:
+        if i.distance(snake) < 20:
+            for i in cuerposnake:
+                i.clear()
+                i.hideturtle()
+            snake.home()
+            cuerposnake.clear()
+            snake.direction = "stop"
+
+         
     time.sleep(retraso)
 
 turtle.done()
