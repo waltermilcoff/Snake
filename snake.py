@@ -35,6 +35,17 @@ cuerposnake = []
 
 retraso = 0.1
 
+puntaje = 0
+mejor_puntaje = 0
+
+mensaje = turtle.Turtle()
+mensaje.speed(0)
+mensaje.color("black")
+mensaje.penup()
+mensaje.hideturtle()
+mensaje.goto(0,260)
+mensaje.write("Puntaje:0\tMejor Puntaje:0", align="center", font=("arial", 16))
+
 
 def arriba():
     snake.direction = "up"
@@ -76,13 +87,18 @@ while True:
     s.update()
     
     if snake.xcor() > 300 or snake.xcor() < -300 or snake.ycor() > 300 or snake.ycor() < -300:
-        time.sleep(3)
+        time.sleep(2)
         for i in cuerposnake:
             i.clear()
             i.hideturtle()
         snake.home()
         snake.direction = "stop"
         cuerposnake.clear()    
+        
+        puntaje = 0
+        mensaje.clear()
+        mensaje.write("Puntaje:{}\tMejor Puntaje:{}".format(puntaje, mejor_puntaje), align="center", font=("arial", 16))
+        
         
 
     if snake.distance(comida) < 20:
@@ -98,6 +114,13 @@ while True:
         nuevo_cuerpo.speed(0)
         cuerposnake.append(nuevo_cuerpo)
         
+        puntaje += 10
+        if puntaje > mejor_puntaje:
+            mejor_puntaje = puntaje
+            mensaje.clear()
+            mensaje.write("Puntaje:{}\tMejor Puntaje:{}".format(puntaje, mejor_puntaje), align="center", font=("arial", 16))
+            
+ 
     total = len(cuerposnake)
         
     for index in range(total -1, 0, -1):
