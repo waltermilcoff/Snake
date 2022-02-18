@@ -8,9 +8,7 @@ s.setup(650,650)
 s.bgcolor("cadetblue")
 s.title("Snake by Walter Milcoff")
 
-
 comida = turtle.Turtle()
-
 
 comida.shape("circle")
 comida.color("orange")
@@ -18,20 +16,16 @@ comida.penup()
 comida.goto(0, 100)
 comida.speed(0)
 
-
 snake = turtle.Turtle()
 
-
 snake.speed(1)
-snake.shape("arrow")
+snake.shape("square")
 snake.penup()
 snake.goto(0,0)
 snake.direction = "stop"
-snake.color("red")
-
+snake.color("DarkGreen")
 
 cuerposnake = []
-
 
 retraso = 0.1
 
@@ -44,7 +38,7 @@ mensaje.color("black")
 mensaje.penup()
 mensaje.hideturtle()
 mensaje.goto(0,260)
-mensaje.write("Puntaje:0\tMejor Puntaje:0", align="center", font=("arial", 16))
+mensaje.write("Puntaje: 0\tMejor Puntaje: 0", align="center", font=("arial", 16))
 
 
 def arriba():
@@ -107,8 +101,8 @@ while True:
         comida.goto(x,y)
         
         nuevo_cuerpo = turtle.Turtle()
-        nuevo_cuerpo.shape("arrow")
-        nuevo_cuerpo.color("red")
+        nuevo_cuerpo.shape("square")
+        nuevo_cuerpo.color("DarkGreen")
         nuevo_cuerpo.penup()
         nuevo_cuerpo.goto(0,0)
         nuevo_cuerpo.speed(0)
